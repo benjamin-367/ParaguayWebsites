@@ -39,8 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const homePropertiesContainer = document.getElementById("home-properties");
   const allPropertiesContainer = document.getElementById("all-properties");
+  const propertyDetailContainer = document.getElementById("property-detail");
 
-  if (homePropertiesContainer || allPropertiesContainer) {
+  if (homePropertiesContainer || allPropertiesContainer || propertyDetailContainer) {
     fetch("properties.json")
       .then((response) => {
         if (!response.ok) throw new Error("Failed to load properties");
@@ -56,10 +57,18 @@ document.addEventListener("DOMContentLoaded", () => {
             const description = useLongDescription && property.longDescription
               ? property.longDescription
               : property.shortDescription;
+            const url = `property.html?id=${encodeURIComponent(property.id)}`;
             article.innerHTML = `
-              <h3>${property.title}</h3>
-              <p>${description}</p>
-              <p><strong>${property.price} · ${property.country}</strong></p>
+              <a href="${url}" class="card-link">
+                ${
+                  property.image
+                    ? `<div class="card-image"><img src="${property.image}" alt="${property.title}"/></div>`
+                    : ""
+                }
+                <h3>${property.title}</h3>
+                <p>${description}</p>
+                <p><strong>${property.price} · ${property.country}</strong></p>
+              </a>
             `;
             container.appendChild(article);
           });
@@ -72,6 +81,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (allPropertiesContainer) {
           renderCards(allPropertiesContainer, properties, true);
+        }
+
+        if (propertyDetailContainer) {
+          const params = new URLSearchParams(window.location.search);
+          const id = params.get("id");
+          const property = properties.find((p) => p.id === id);
+          if (!property) {
+            propertyDetailContainer.innerHTML =
+              "<p class=\"muted\">Property not found. It may have been removed or renamed.</p>";
+            return;
+          }
+
+          const imageSection = property.image
+            ? `
+            <div class="property-hero-image">
+              <img src="${property.image}" alt="${property.title}" />
+            </div>`
+            : "";
+
+          propertyDetailContainer.innerHTML = `
+            <div class="property-layout">
+              ${imageSection}
+              <div class="property-main">
+                <h1>${property.title}</h1>
+                <p class="property-meta">${property.price} · ${property.country}</p>
+                <p class="property-description">
+                  ${property.longDescription || property.shortDescription}
+                </p>
+                <div class="property-actions">
+                  <a href="index.html#contact" class="btn primary">Request more details</a>
+                  <a href="properties.html" class="btn ghost">Back to all properties</a>
+                </div>
+              </div>
+            </div>
+          `;
         }
       })
       .catch(() => {
