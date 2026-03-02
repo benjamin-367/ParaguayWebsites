@@ -4,6 +4,7 @@
     "title": "Asunción Sky Residences",
     "country": "Paraguay",
     "price": "From $85,000",
+    "image": "images/asuncion-sky-residences.jpg",
     "shortDescription": "Modern two and three-bedroom apartments in central Asunción with premium amenities, rooftop pool, and city views.",
     "longDescription": "Modern two and three-bedroom apartments in central Asunción with premium amenities, rooftop pool, co-working lounge, and secure parking.",
     "featuredOnHome": true
@@ -13,6 +14,7 @@
     "title": "Luque Garden Villas",
     "country": "Paraguay",
     "price": "From $125,000",
+    "image": "images/luque-garden-villas.jpg",
     "shortDescription": "Gated community of contemporary townhouses close to the airport, with green spaces and family-friendly facilities.",
     "longDescription": "Contemporary townhouses in a gated community near Asunción airport. Landscaped gardens, playgrounds, and clubhouse designed for families and long-stay living.",
     "featuredOnHome": true
@@ -22,6 +24,7 @@
     "title": "Costa Blanca Seaview",
     "country": "Spain",
     "price": "From €230,000",
+    "image": "images/costa-blanca-seaview.jpg",
     "shortDescription": "Mediterranean-style new build apartments on Spain's Costa Blanca with sea views, pool, and strong rental potential.",
     "longDescription": "Mediterranean-style apartments on Spain's Costa Blanca offering sea views, infinity pool, spa, and strong short- and long-term rental potential.",
     "featuredOnHome": true
